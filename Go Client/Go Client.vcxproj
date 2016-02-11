@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Go Client.h" />
+    <ClInclude Include="stdGoBoard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Go Client.cpp" />
