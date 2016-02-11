@@ -31,3 +31,8 @@ board GoBoard::ReturnGoBoardBoard()
 {
 	return goBoardBoard;
 }
+
+void GoBoard::PlayStone(uint8_t X, uint8_t Y, stone stoneColour)
+{
+	goBoardBoard[Y][X] = stoneColour;
+}
