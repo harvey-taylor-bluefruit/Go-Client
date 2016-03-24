@@ -18,15 +18,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Go Client.h">
+    <ClInclude Include="stdGoBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stdGoBoard.h">
+    <ClInclude Include="Go Board.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Go Rules.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Go Client.cpp">
+    <ClCompile Include="Go Board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Go Rules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
