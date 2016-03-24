@@ -10,9 +10,3 @@ typedef unsigned char stone;
 #define empty (0)
 
 typedef std::vector<std::vector<stone>> board;
-
-struct coordinate
-{
-	uint8_t x;
-	uint8_t y;
-};

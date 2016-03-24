@@ -5,7 +5,6 @@ using namespace std;
 GoBoard::GoBoard(uint8_t goBoardSize) :
 goBoardSize(goBoardSize), goBoardBoard(CreateGoBoard())
 {
-
 }
 
 uint8_t GoBoard::ReturnGoBoardSize()
@@ -27,7 +26,7 @@ board GoBoard::CreateGoBoard()
 	return tempGoBoardBoard;
 }
 
-board GoBoard::ReturnGoBoardBoard()
+board GoBoard::ReturnGoBoard()
 {
 	return goBoardBoard;
 }
