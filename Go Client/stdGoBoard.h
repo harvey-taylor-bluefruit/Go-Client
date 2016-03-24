@@ -11,3 +11,8 @@ typedef unsigned char stone;
 
 typedef std::vector<std::vector<stone>> board;
 
+struct coordinate
+{
+	uint8_t x;
+	uint8_t y;
+};
