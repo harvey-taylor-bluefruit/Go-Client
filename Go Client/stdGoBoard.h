@@ -10,4 +10,3 @@ typedef unsigned char stone;
 #define empty (0)
 
 typedef std::vector<std::vector<stone>> board;
-

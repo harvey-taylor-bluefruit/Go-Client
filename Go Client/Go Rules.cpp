@@ -1,36 +1,77 @@
 #include "Go Rules.h"
 
 Rules::Rules(GoBoard &goBoard):
-	currentBoard(goBoard.ReturnGoBoardBoard())
+	currentBoard(goBoard.ReturnGoBoard())
 {
-	
 }
 
-void Rules::killthedead(GoBoard &goBoard)
+void Rules::KillTheDead(GoBoard &goBoard)
 {
-	currentBoard = goBoard.ReturnGoBoardBoard();
+	currentBoard = goBoard.ReturnGoBoard();
 	for (uint8_t x = 0; x < currentBoard.size(); ++x)
 	{
 		for (uint8_t y = 0; y < currentBoard.size(); ++y)
 		{
-			if (checkliberties(x, y) == 0)
+			currentBoard = goBoard.ReturnGoBoard();
+			checkedCoordinates = {};
+			currentStone = currentBoard[x][y];
+			liberties = 0;
+			if (CheckLibertiesOfAGroup(x, y) == 0 && currentBoard[x][y] != empty)
 			{
-				goBoard.PlayStone(x, y, empty);
-				currentBoard = goBoard.ReturnGoBoardBoard();
+				KillGroup(x, y, goBoard);
 			}
 		}
 	}
 }
 
-uint8_t Rules::checkLibertiesOfAGroup(uint8_t x, uint8_t y)
+void Rules::KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard)
 {
-	return 0;
+	goBoard.PlayStone(x, y, empty);
+	currentBoard = goBoard.ReturnGoBoard();
+	if (x < currentBoard.size() - 1)
+		if (currentBoard[y][x + 1] == currentStone)
+			KillGroup(x + 1, y, goBoard);
+	if (y < currentBoard.size() - 1)
+		if (currentBoard[y + 1][x] == currentStone)
+			KillGroup(x, y + 1, goBoard);
+	if (x)
+		if (currentBoard[y][x - 1] == currentStone)
+			KillGroup(x - 1, y, goBoard);
+	if (y)
+		if (currentBoard[y - 1][x] == currentStone)
+			KillGroup(x, y - 1, goBoard);
 }
 
-
-uint8_t Rules::checkliberties(uint8_t y, uint8_t x)
+uint8_t Rules::CheckLibertiesOfAGroup(uint8_t x, uint8_t y)
 {
-	uint8_t liberties = 0;
+	coordinate currentCoord;
+	currentCoord.x = x;
+	currentCoord.y = y;
+	for (uint8_t i = 0; i < checkedCoordinates.size(); i++)
+	{
+		if (currentCoord.x == checkedCoordinates[i].x && currentCoord.y == checkedCoordinates[i].y)
+		return liberties;
+	}
+	checkedCoordinates.push_back(currentCoord);
+
+	CheckLiberties(x, y);
+	if (x < currentBoard.size() - 1)
+		if (currentBoard[x + 1][y] == currentStone)
+			CheckLibertiesOfAGroup(x + 1, y);
+	if (y < currentBoard.size() - 1)
+		if (currentBoard[x][y + 1] == currentStone)
+			CheckLibertiesOfAGroup(x, y + 1);
+	if (x)
+		if (currentBoard[x - 1][y] == currentStone)
+			CheckLibertiesOfAGroup(x - 1, y);
+	if (y)
+		if (currentBoard[x][y - 1] == currentStone)
+			CheckLibertiesOfAGroup(x, y - 1);
+	return liberties;
+}
+
+void Rules::CheckLiberties(uint8_t x, uint8_t y)
+{
 	if (x < currentBoard.size()-1)
 		if (currentBoard[x + 1][y] == empty)
 			++liberties;
@@ -43,5 +84,4 @@ uint8_t Rules::checkliberties(uint8_t y, uint8_t x)
 	if (y)
 		if (currentBoard[x][y - 1] == empty)
 			++liberties;
-	return liberties;
 }
