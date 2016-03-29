@@ -5,8 +5,8 @@
 
 typedef unsigned char stone;
 
+#define empty (0)
 #define white (1)
 #define black (2)
-#define empty (0)
 
 typedef std::vector<std::vector<stone>> board;

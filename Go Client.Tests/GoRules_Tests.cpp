@@ -12,7 +12,7 @@ TEST(Rules, Stone_dies)
 	testBoard.PlayStone(0, 1, black);
 	testBoard.PlayStone(0, 0, white);
 	testBoard.PlayStone(1, 0, black);
-	testrules.KillTheDead(testBoard);
+	testrules.DoRules(white, testBoard);
 	EXPECT_EQ(expectedboard, testBoard.ReturnGoBoard());
 }
 
@@ -29,7 +29,7 @@ TEST(Rules, Stone_dosent_die_when_sorounded_by_its_own_stones)
 	testBoard.PlayStone(1, 0, black);
 	testBoard.PlayStone(1, 2, black);
 	testBoard.PlayStone(2, 1, black);
-	testrules.KillTheDead(testBoard);
+	testrules.DoRules(black, testBoard);
 	EXPECT_EQ(expectedboard, testBoard.ReturnGoBoard());
 }
 
@@ -48,6 +48,7 @@ TEST(Rules, Group_death)
 	testBoard.PlayStone(2, 2, black);
 	testBoard.PlayStone(1, 1, white);
 	testBoard.PlayStone(2, 1, white);
-	testrules.KillTheDead(testBoard);
+	testrules.DoRules(testBoard.ReturnTurn(), testBoard);
+	testrules.DoRules(black, testBoard);
 	EXPECT_EQ(expectedboard, testBoard.ReturnGoBoard());
 }

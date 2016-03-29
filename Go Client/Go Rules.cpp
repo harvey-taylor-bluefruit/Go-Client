@@ -5,7 +5,7 @@ Rules::Rules(GoBoard &goBoard):
 {
 }
 
-void Rules::KillTheDead(GoBoard &goBoard)
+void Rules::DoRules(stone StoneChecking, GoBoard &goBoard)
 {
 	currentBoard = goBoard.ReturnGoBoard();
 	for (uint8_t x = 0; x < currentBoard.size(); ++x)
@@ -16,7 +16,7 @@ void Rules::KillTheDead(GoBoard &goBoard)
 			checkedCoordinates = {};
 			currentStone = currentBoard[x][y];
 			liberties = 0;
-			if (CheckLibertiesOfAGroup(x, y) == 0 && currentBoard[x][y] != empty)
+			if (CheckLibertiesOfAGroup(x, y) == 0 && currentBoard[x][y] == StoneChecking)
 			{
 				KillGroup(x, y, goBoard);
 			}
