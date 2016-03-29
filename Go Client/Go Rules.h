@@ -5,7 +5,7 @@ class Rules
 {
 public:
 	Rules(GoBoard& goBoard);
-	void KillTheDead(GoBoard &goBoard);
+	void DoRules(stone stoneChecking, GoBoard &goBoard);
 private:
 	void KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard);
 	uint8_t CheckLibertiesOfAGroup(uint8_t x, uint8_t y);

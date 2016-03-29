@@ -3,7 +3,7 @@
 using namespace std;
 
 GoBoard::GoBoard(uint8_t goBoardSize) :
-goBoardSize(goBoardSize), goBoardBoard(CreateGoBoard())
+goBoardSize(goBoardSize), goBoardBoard(CreateGoBoard()), turn(empty)
 {
 }
 
@@ -34,4 +34,13 @@ board GoBoard::ReturnGoBoard()
 void GoBoard::PlayStone(uint8_t X, uint8_t Y, stone stoneColour)
 {
 	goBoardBoard[Y][X] = stoneColour;
+	if (stoneColour = white)
+		turn = black;
+	if (stoneColour = black)
+		turn = white;
+}
+
+stone GoBoard::ReturnTurn()
+{
+	return turn;
 }
