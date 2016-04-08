@@ -34,13 +34,24 @@ board GoBoard::ReturnGoBoard()
 void GoBoard::PlayStone(uint8_t X, uint8_t Y, stone stoneColour)
 {
 	goBoardBoard[Y][X] = stoneColour;
-	if (stoneColour = white)
+	if (stoneColour == white)
+	{
 		turn = black;
-	if (stoneColour = black)
+		notTurn = white;
+	}
+	if (stoneColour == black)
+	{
 		turn = white;
+		notTurn = black;
+	}
 }
 
 stone GoBoard::ReturnTurn()
 {
 	return turn;
+}
+
+stone GoBoard::ReturnNotTurn()
+{
+	return notTurn;
 }

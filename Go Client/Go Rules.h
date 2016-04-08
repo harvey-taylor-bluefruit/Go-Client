@@ -9,7 +9,7 @@ public:
 private:
 	void KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard);
 	uint8_t CheckLibertiesOfAGroup(uint8_t x, uint8_t y);
-	void CheckLiberties(uint8_t x, uint8_t y);
+	void CheckLibertiesOfAStone(uint8_t x, uint8_t y);
 
 	struct coordinate
 	{
