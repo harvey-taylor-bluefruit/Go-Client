@@ -1,5 +1,4 @@
-#ifndef CONSOLE
-#define CONSOLE 
+#pragma once
 
 #include "..\Go Client\Go Rules.h"
 #include <string>
@@ -11,5 +10,3 @@ namespace ConsoleFuntions
 	bool GetCoordiatesAndPlay(GoBoard &goBoard);
 	uint8_t GetInput(std::string message);
 };
-
-#endif // !CONSOLE
