@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Go Client", "Go Client\Go Client.vcxproj", "{9288709C-0E2B-4635-BA79-717E1A6D207A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Go Client.Tests", "Go Client.Tests\Go Client.Tests.vcxproj", "{1F187D21-4D86-4598-866F-C1249AE0E742}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GTest", "GTest\GTest.vcxproj", "{57008C39-3AF4-4306-9ACD-F0E82EDC486B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplicationGoBoard", "ConsoleApplicationGoBoard\ConsoleApplicationGoBoard.vcxproj", "{A4AA52D8-F137-4498-B5C4-6D8A20746159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,16 @@ Global
 		{57008C39-3AF4-4306-9ACD-F0E82EDC486B}.Release|Win32.ActiveCfg = Release|Win32
 		{57008C39-3AF4-4306-9ACD-F0E82EDC486B}.Release|Win32.Build.0 = Release|Win32
 		{57008C39-3AF4-4306-9ACD-F0E82EDC486B}.Release|x64.ActiveCfg = Release|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Debug|ARM.ActiveCfg = Debug|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Debug|Win32.Build.0 = Debug|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Debug|x64.ActiveCfg = Debug|x64
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Debug|x64.Build.0 = Debug|x64
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Release|ARM.ActiveCfg = Release|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Release|Win32.ActiveCfg = Release|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Release|Win32.Build.0 = Release|Win32
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Release|x64.ActiveCfg = Release|x64
+		{A4AA52D8-F137-4498-B5C4-6D8A20746159}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

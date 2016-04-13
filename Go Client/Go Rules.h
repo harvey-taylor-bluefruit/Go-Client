@@ -8,7 +8,7 @@ public:
 	void DoRules(stone stoneChecking, GoBoard &goBoard);
 private:
 	void KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard);
-	uint8_t CheckLibertiesOfAGroup(uint8_t x, uint8_t y);
+	uint8_t NumberOflibertiesOfAGroup(uint8_t x, uint8_t y);
 	void CheckLibertiesOfAStone(uint8_t x, uint8_t y);
 
 	struct coordinate
