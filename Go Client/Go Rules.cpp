@@ -16,9 +16,12 @@ void Rules::DoRules(stone StoneChecking, GoBoard &goBoard)
 			checkedCoordinates = {};
 			currentStone = currentBoard[x][y];
 			liberties = 0;
-			if (CheckLibertiesOfAGroup(x, y) == 0 && currentBoard[x][y] == StoneChecking)
+			if (currentBoard[x][y] == StoneChecking)
 			{
-				KillGroup(x, y, goBoard);
+				if (NumberOflibertiesOfAGroup(x, y) == 0)
+				{
+					KillGroup(x, y, goBoard);
+				}
 			}
 		}
 	}
@@ -26,7 +29,7 @@ void Rules::DoRules(stone StoneChecking, GoBoard &goBoard)
 
 void Rules::KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard)
 {
-	goBoard.PlayStone(y, x, empty);
+	goBoard.PlayStone(y, x, stone::EMPTY);
 	currentBoard = goBoard.ReturnGoBoard();
 	if (x < currentBoard.size() - 1)
 		if (currentBoard[y][x + 1] == currentStone)
@@ -42,13 +45,13 @@ void Rules::KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard)
 			KillGroup(y - 1, x,  goBoard);
 }
 
-uint8_t Rules::CheckLibertiesOfAGroup(uint8_t x, uint8_t y)
+uint8_t Rules::NumberOflibertiesOfAGroup(uint8_t x, uint8_t y)
 {
 	coordinate currentCoord;
 	currentCoord.x = x;
 	currentCoord.y = y;
 
-	for (uint8_t i = 0; i < checkedCoordinates.size(); i++)
+	for (uint16_t i = 0; i < checkedCoordinates.size(); i++)
 	{
 		if (currentCoord.x == checkedCoordinates[i].x && currentCoord.y == checkedCoordinates[i].y)
 		return liberties;
@@ -58,31 +61,32 @@ uint8_t Rules::CheckLibertiesOfAGroup(uint8_t x, uint8_t y)
 	CheckLibertiesOfAStone(x, y);
 	if (x < currentBoard.size() - 1)
 		if (currentBoard[x + 1][y] == currentStone)
-			CheckLibertiesOfAGroup(x + 1, y);
+			NumberOflibertiesOfAGroup(x + 1, y);
 	if (y < currentBoard.size() - 1)
 		if (currentBoard[x][y + 1] == currentStone)
-			CheckLibertiesOfAGroup(x, y + 1);
+			NumberOflibertiesOfAGroup(x, y + 1);
 	if (x)
 		if (currentBoard[x - 1][y] == currentStone)
-			CheckLibertiesOfAGroup(x - 1, y);
+			NumberOflibertiesOfAGroup(x - 1, y);
 	if (y)
 		if (currentBoard[x][y - 1] == currentStone)
-			CheckLibertiesOfAGroup(x, y - 1);
+			NumberOflibertiesOfAGroup(x, y - 1);
+	
 	return liberties;
 }
 
 void Rules::CheckLibertiesOfAStone(uint8_t x, uint8_t y)
 {
 	if (x < currentBoard.size()-1)
-		if (currentBoard[x + 1][y] == empty)
+		if (currentBoard[x + 1][y] == stone::EMPTY)
 			++liberties;
 	if (y < currentBoard.size()-1)
-		if (currentBoard[x][y + 1] == empty)
+		if (currentBoard[x][y + 1] == stone::EMPTY)
 			++liberties;
 	if (x)
-		if (currentBoard[x - 1][y] == empty)
+		if (currentBoard[x - 1][y] == stone::EMPTY)
 			++liberties;
 	if (y)
-		if (currentBoard[x][y - 1] == empty)
+		if (currentBoard[x][y - 1] == stone::EMPTY)
 			++liberties;
 }
