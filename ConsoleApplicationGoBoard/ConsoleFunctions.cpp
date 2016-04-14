@@ -2,25 +2,25 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+using namespace ::std;
 
 void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
 {
-	board CurrentBoard = goBoard.ReturnGoBoard();
-	uint8_t SizeOfCurrentBoard = goBoard.ReturnGoBoardSize();
-	for (uint8_t x = 0; x < SizeOfCurrentBoard; x++)
+	board currentBoard = goBoard.ReturnGoBoard();
+	uint8_t sizeOfCurrentBoard = goBoard.ReturnGoBoardSize();
+	for (uint8_t x = 0; x < sizeOfCurrentBoard; x++)
 	{
-		for (uint8_t y = 0; y < SizeOfCurrentBoard; y++)
+		for (uint8_t y = 0; y < sizeOfCurrentBoard; y++)
 		{
-			switch (CurrentBoard[x][y])
+			switch (currentBoard[x][y])
 			{
-			case stone::EMPTY:
+			case stone::empty:
 				cout << "+ ";
 				break;
-			case stone::BLACK:
+			case stone::black:
 				cout << "O ";
 				break;
-			case stone::WHITE:
+			case stone::white:
 				cout << "0 ";
 				break;
 			}
@@ -29,15 +29,15 @@ void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
 	}
 }
 
-void ConsoleFuntions::playerMove(GoBoard &goBoard)
+void ConsoleFuntions::ObtainValidPlayerMove(GoBoard &goBoard)
 {
-	while (!GetCoordiatesAndPlay(goBoard))
+	while (!GetCoordinatesAndPlay(goBoard))
 	{
 		std::cout << "you cant go there!" << std::endl;
 	}
 }
 
-bool ConsoleFuntions::GetCoordiatesAndPlay(GoBoard &goBoard)
+bool ConsoleFuntions::GetCoordinatesAndPlay(GoBoard &goBoard)
 {
 	uint8_t size = goBoard.ReturnGoBoardSize();
 	int16_t x = size;
@@ -51,7 +51,7 @@ bool ConsoleFuntions::GetCoordiatesAndPlay(GoBoard &goBoard)
 		y = GetInput("please input an y coordinate : ");
 	}
 
-	return goBoard.PlayStone(x, y, goBoard.ReturnTurn());
+	return goBoard.PlayStone(x, y, goBoard.ReturnWhosMoveIsNext());
 }
 
 uint8_t ConsoleFuntions::GetInput(string message)
@@ -64,7 +64,7 @@ uint8_t ConsoleFuntions::GetInput(string message)
 	bool succesfull = false;
 	while (!succesfull)
 	{
-		cin >> input;
+		cin >> stringInput;
 		try
 		{
 			input = stoi(stringInput, pos, base);
@@ -78,7 +78,7 @@ uint8_t ConsoleFuntions::GetInput(string message)
 		}
 		catch (out_of_range)
 		{
-			cout << "Invalid!" << endl;
+			cout << "Out of range!" << endl;
 			cout << message << endl;
 			succesfull = false;
 		}

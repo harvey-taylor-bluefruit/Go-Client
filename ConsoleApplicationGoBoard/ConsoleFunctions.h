@@ -6,7 +6,7 @@
 namespace ConsoleFuntions
 {
 	void PrintBoard(GoBoard &goBoard);
-	void playerMove(GoBoard &goBoard);
-	bool GetCoordiatesAndPlay(GoBoard &goBoard);
+	void ObtainValidPlayerMove(GoBoard &goBoard);
+	bool GetCoordinatesAndPlay(GoBoard &goBoard);
 	uint8_t GetInput(std::string message);
 };
