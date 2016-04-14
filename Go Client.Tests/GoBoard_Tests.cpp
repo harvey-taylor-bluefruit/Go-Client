@@ -17,9 +17,9 @@ TEST(ConstructorTests, GoBoard_3by3)
 {
 	GoBoard Test(3);
 	board testBoard = {
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY } };
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty } };
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
 }
 
@@ -27,50 +27,50 @@ TEST(ConstructorTests, GoBoard_4by4)
 {
 	GoBoard Test(4);
 	board testBoard = {
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY, stone::EMPTY } };
+		{ stone::empty, stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty, stone::empty } };
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
 }
 
-TEST(PlacingStoneTests, Play_WHITE_On_1_1)
+TEST(PlacingStoneTests, Play_white_On_1_1)
 {
 	GoBoard Test(3);
 	board testBoard = {
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY } };
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty } };
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
-	Test.PlayStone(1, 1, stone::WHITE);
-	testBoard[1][1] = stone::WHITE;
+	Test.PlayStone(1, 1, stone::white);
+	testBoard[1][1] = stone::white;
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
 }
 
-TEST(PlacingStoneTests, play_BLACK_on_1_1)
+TEST(PlacingStoneTests, play_black_on_1_1)
 {
 	GoBoard Test(3);
 	board testBoard = {
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY } };
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty } };
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
-	Test.PlayStone(1, 1, stone::BLACK);
-	testBoard[1][1] = stone::BLACK;
+	Test.PlayStone(1, 1, stone::black);
+	testBoard[1][1] = stone::black;
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
 }
 
-TEST(PlacingStoneTests, play_BLACK_on_0_0_and_WHITE_on_1_1)
+TEST(PlacingStoneTests, play_black_on_0_0_and_white_on_1_1)
 {
 	GoBoard Test(3);
 	board testBoard = {
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY },
-		{ stone::EMPTY, stone::EMPTY, stone::EMPTY } };
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty },
+		{ stone::empty, stone::empty, stone::empty } };
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
-	Test.PlayStone(0, 0, stone::BLACK);
-	testBoard[0][0] = stone::BLACK;
-	Test.PlayStone(1, 1, stone::WHITE);
-	testBoard[1][1] = stone::WHITE;
+	Test.PlayStone(0, 0, stone::black);
+	testBoard[0][0] = stone::black;
+	Test.PlayStone(1, 1, stone::white);
+	testBoard[1][1] = stone::white;
 	EXPECT_EQ(testBoard, Test.ReturnGoBoard());
 }

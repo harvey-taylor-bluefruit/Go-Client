@@ -10,8 +10,8 @@ void main()
 	while (1)
 	{
 		PrintBoard(Game);
-		playerMove(Game);
-		rules.DoRules(Game.ReturnTurn(), Game);
-		rules.DoRules(Game.ReturnNotTurn(), Game);
+		ObtainValidPlayerMove(Game);
+		rules.DoRules(Game.ReturnWhosMoveIsNext(), Game);
+		rules.DoRules(Game.ReturnWhosMoveJustWent(), Game);
 	}
 }

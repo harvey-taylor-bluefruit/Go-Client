@@ -3,7 +3,7 @@
 using namespace std;
 
 GoBoard::GoBoard(uint8_t goBoardSize) :
-goBoardSize(goBoardSize), goBoardBoard(CreateGoBoard()), turn(stone::BLACK), notTurn(stone::WHITE)
+goBoardSize(goBoardSize), goBoard(CreateGoBoard()), turn(stone::black), notTurn(stone::white)
 {
 }
 
@@ -20,7 +20,7 @@ board GoBoard::CreateGoBoard()
 		tempGoBoardBoard.push_back(vector<stone> {});
 		for (uint8_t y = 0; y < goBoardSize; y++)
 		{
-			tempGoBoardBoard[x].push_back(stone::EMPTY);
+			tempGoBoardBoard[x].push_back(stone::empty);
 		}
 	}
 	return tempGoBoardBoard;
@@ -28,33 +28,33 @@ board GoBoard::CreateGoBoard()
 
 board GoBoard::ReturnGoBoard()
 {
-	return goBoardBoard;
+	return goBoard;
 }
 
 bool GoBoard::PlayStone(uint8_t X, uint8_t Y, stone stoneColour)
 {
-	if (goBoardBoard[Y][X] != stone::EMPTY && stoneColour != stone::EMPTY)
+	if (goBoard[Y][X] != stone::empty && stoneColour != stone::empty)
 		return false;
-	goBoardBoard[Y][X] = stoneColour;
-	if (stoneColour == stone::WHITE)
+	goBoard[Y][X] = stoneColour;
+	if (stoneColour == stone::white)
 	{
-		turn = stone::BLACK;
-		notTurn = stone::WHITE;
+		turn = stone::black;
+		notTurn = stone::white;
 	}
-	if (stoneColour == stone::BLACK)
+	if (stoneColour == stone::black)
 	{
-		turn = stone::WHITE;
-		notTurn = stone::BLACK;
+		turn = stone::white;
+		notTurn = stone::black;
 	}
 	return true;
 }
 
-stone GoBoard::ReturnTurn()
+stone GoBoard::ReturnWhosMoveIsNext()
 {
 	return turn;
 }
 
-stone GoBoard::ReturnNotTurn()
+stone GoBoard::ReturnWhosMoveJustWent()
 {
 	return notTurn;
 }

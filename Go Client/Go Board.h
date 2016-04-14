@@ -9,12 +9,12 @@ public:
 	uint8_t ReturnGoBoardSize();
 	bool PlayStone(uint8_t X, uint8_t Y, stone);
 	board ReturnGoBoard();
-	stone ReturnTurn();
-	stone ReturnNotTurn();
+	stone ReturnWhosMoveIsNext();
+	stone ReturnWhosMoveJustWent();
 private:
 	board CreateGoBoard();
 	const uint8_t goBoardSize;
-	board goBoardBoard;
+	board goBoard;
 	stone turn;
 	stone notTurn;
 };
