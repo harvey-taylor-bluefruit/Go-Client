@@ -76,22 +76,17 @@ uint8_t Rules::NumberOflibertiesOfAGroup(uint8_t x, uint8_t y)
 	if (y)
 		if (currentBoard[y - 1][x] == currentStone)
 			NumberOflibertiesOfAGroup(x, y - 1);
-	
 	return liberties;
 }
 
 void Rules::CheckLibertiesOfAStone(uint8_t x, uint8_t y)
 {
-	if (x < currentBoard.size()-1)
-		if (currentBoard[y][x + 1] == stone::empty)
-			++liberties;
-	if (y < currentBoard.size()-1)
-		if (currentBoard[y + 1][x] == stone::empty)
-			++liberties;
-	if (x)
-		if (currentBoard[y][x - 1] == stone::empty)
-			++liberties;
-	if (y)
-		if (currentBoard[y - 1][x] == stone::empty)
-			++liberties;
+	if (x < currentBoard.size()-1 && (currentBoard[y][x + 1] == stone::empty))
+		++liberties;
+	if (y < currentBoard.size()-1 && (currentBoard[y + 1][x] == stone::empty))
+		++liberties;
+	if (x && (currentBoard[y][x - 1] == stone::empty))
+		++liberties;
+	if (y && (currentBoard[y - 1][x] == stone::empty))
+		++liberties;
 }

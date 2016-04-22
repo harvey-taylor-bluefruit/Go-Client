@@ -1,1 +1,16 @@
-﻿  GTest.vcxproj -> C:\Git Projects\GoCleint\Debug\GTest.lib
+﻿Build started 19/04/2016 13:45:18.
+     1>Project "C:\Git Projects\GoCleint\GTest\GTest.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Visual Studios\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "..\gtest-1.7.0\src\gtest-all.cc" "..\gtest-1.7.0\src\gtest_main.cc"
+         gtest_main.cc
+         gtest-all.cc
+         Generating Code...
+       Lib:
+         D:\Visual Studios\VC\bin\Lib.exe /OUT:"C:\Git Projects\GoCleint\Debug\GTest.lib" /NOLOGO "Debug\gtest-all.obj"
+         Debug\gtest_main.obj
+         GTest.vcxproj -> C:\Git Projects\GoCleint\Debug\GTest.lib
+     1>Done Building Project "C:\Git Projects\GoCleint\GTest\GTest.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.67
