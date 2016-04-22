@@ -11,7 +11,11 @@ public:
 	board ReturnGoBoard();
 	stone ReturnWhosMoveIsNext();
 	stone ReturnWhosMoveJustWent();
+	uint16_t ReturnDeadStones(stone stone);
+	void IncrimentDeadStones(stone stone);
 private:
+	uint16_t deadWhiteStones;
+	uint16_t deadBlackStones;
 	board CreateGoBoard();
 	const uint8_t goBoardSize;
 	board goBoard;

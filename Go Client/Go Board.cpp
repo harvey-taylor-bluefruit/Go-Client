@@ -3,7 +3,9 @@
 using namespace std;
 
 GoBoard::GoBoard(uint8_t goBoardSize) :
-goBoardSize(goBoardSize), goBoard(CreateGoBoard()), turn(stone::black), notTurn(stone::white)
+goBoardSize(goBoardSize), goBoard(CreateGoBoard()),
+turn(stone::black), notTurn(stone::white),
+deadBlackStones(0), deadWhiteStones(0)
 {
 }
 
@@ -57,4 +59,26 @@ stone GoBoard::ReturnWhosMoveIsNext()
 stone GoBoard::ReturnWhosMoveJustWent()
 {
 	return notTurn;
+}
+
+uint16_t GoBoard::ReturnDeadStones(stone stone)
+{
+	switch (stone)
+	{
+	case stone::white:
+		return deadWhiteStones;
+	case stone::black:
+		return deadBlackStones;
+	}
+}
+
+void GoBoard::IncrimentDeadStones(stone stone)
+{
+	switch (stone)
+	{
+	case stone::white:
+		deadWhiteStones++;
+	case stone::black:
+		deadBlackStones++;
+	}
 }

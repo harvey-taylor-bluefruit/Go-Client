@@ -27,6 +27,13 @@ void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
 		}
 		cout << endl;
 	}
+	ConsoleFuntions::OutputDeadStones(goBoard);
+}
+
+void ConsoleFuntions::OutputDeadStones(GoBoard &goBoard)
+{
+	cout << "Dead white stones : " << goBoard.ReturnDeadStones(stone::white) << endl;
+	cout << "Dead black stones : " << goBoard.ReturnDeadStones(stone::black) << endl;
 }
 
 void ConsoleFuntions::ObtainValidPlayerMove(GoBoard &goBoard)
