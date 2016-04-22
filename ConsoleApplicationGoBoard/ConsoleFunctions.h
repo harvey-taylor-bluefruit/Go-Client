@@ -3,7 +3,7 @@
 #include "..\Go Client\Go Rules.h"
 #include <string>
 
-namespace ConsoleFuntions
+namespace ConsoleFunctions
 {
 	void PrintBoard(GoBoard &goBoard);
 	void OutputDeadStones(GoBoard &goBoard);

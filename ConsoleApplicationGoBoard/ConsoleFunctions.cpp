@@ -4,7 +4,7 @@
 
 using namespace ::std;
 
-void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
+void ConsoleFunctions::PrintBoard(GoBoard &goBoard)
 {
 	board currentBoard = goBoard.ReturnGoBoard();
 	uint8_t sizeOfCurrentBoard = goBoard.ReturnGoBoardSize();
@@ -27,16 +27,16 @@ void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
 		}
 		cout << endl;
 	}
-	ConsoleFuntions::OutputDeadStones(goBoard);
+	ConsoleFunctions::OutputDeadStones(goBoard);
 }
 
-void ConsoleFuntions::OutputDeadStones(GoBoard &goBoard)
+void ConsoleFunctions::OutputDeadStones(GoBoard &goBoard)
 {
 	cout << "Dead white stones : " << goBoard.ReturnDeadStones(stone::white) << endl;
 	cout << "Dead black stones : " << goBoard.ReturnDeadStones(stone::black) << endl;
 }
 
-void ConsoleFuntions::ObtainValidPlayerMove(GoBoard &goBoard)
+void ConsoleFunctions::ObtainValidPlayerMove(GoBoard &goBoard)
 {
 	while (!GetCoordinatesAndPlay(goBoard))
 	{
@@ -44,7 +44,7 @@ void ConsoleFuntions::ObtainValidPlayerMove(GoBoard &goBoard)
 	}
 }
 
-bool ConsoleFuntions::GetCoordinatesAndPlay(GoBoard &goBoard)
+bool ConsoleFunctions::GetCoordinatesAndPlay(GoBoard &goBoard)
 {
 	uint8_t size = goBoard.ReturnGoBoardSize();
 	int16_t x = size;
@@ -61,7 +61,7 @@ bool ConsoleFuntions::GetCoordinatesAndPlay(GoBoard &goBoard)
 	return goBoard.PlayStone(x, y, goBoard.ReturnWhosMoveIsNext());
 }
 
-uint8_t ConsoleFuntions::GetInput(string message)
+uint8_t ConsoleFunctions::GetInput(string message)
 {
 	cout << message << endl;
 	string stringInput;

@@ -1,7 +1,7 @@
 #include "ConsoleFunctions.h"
 #include <iostream>
 
-using namespace ConsoleFuntions;
+using namespace ConsoleFunctions;
 
 void main()
 {
