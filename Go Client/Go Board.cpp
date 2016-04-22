@@ -72,7 +72,7 @@ uint16_t GoBoard::ReturnDeadStones(stone stone)
 	}
 }
 
-void GoBoard::IncrimentDeadStones(stone stone)
+void GoBoard::IncrementDeadStones(stone stone)
 {
 	switch (stone)
 	{

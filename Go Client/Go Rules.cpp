@@ -34,7 +34,7 @@ void Rules::CheckRules(uint8_t x, uint8_t y, GoBoard &goBoard, stone StoneChecki
 
 void Rules::KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard)
 {
-	goBoard.IncrimentDeadStones(currentStone);
+	goBoard.IncrementDeadStones(currentStone);
 	goBoard.PlayStone(x, y, stone::empty);
 	currentBoard = goBoard.ReturnGoBoard();
 	if (x < currentBoard.size() - 1)
