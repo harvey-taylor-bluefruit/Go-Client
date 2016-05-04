@@ -4,11 +4,11 @@
 class Rules
 {
 public:
-	Rules(GoBoard& goBoard);
-	void DoRules(stone stoneChecking, GoBoard &goBoard);
+   Rules(GameState& goBoard);
+   void DoRules(stone stoneChecking, GameState &goBoard);
 private:
-	void CheckRules(uint8_t x, uint8_t y, GoBoard &goBoard, stone StoneChecking);
-	void KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard);
+   void CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone StoneChecking);
+   void KillGroup(uint8_t x, uint8_t y, GameState &goBoard);
 	uint8_t NumberOflibertiesOfAGroup(uint8_t x, uint8_t y);
 	void CheckLibertiesOfAStone(uint8_t x, uint8_t y);
 

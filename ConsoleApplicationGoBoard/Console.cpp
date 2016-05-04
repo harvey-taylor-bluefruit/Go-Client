@@ -1,13 +1,13 @@
-#include "ConsoleFunctions.h"
+#include "Console.h"
 #include <iostream>
 #include <string>
 
 using namespace ::std;
 
-void ConsoleFunctions::PrintBoard(GoBoard &goBoard)
+const void Console::PrintBoard(GameState &goBoard)
 {
-	board currentBoard = goBoard.ReturnGoBoard();
-	uint8_t sizeOfCurrentBoard = goBoard.ReturnGoBoardSize();
+	board currentBoard = goBoard.GoBoard();
+	uint8_t sizeOfCurrentBoard = goBoard.GoBoardSize();
 	for (uint8_t x = 0; x < sizeOfCurrentBoard; x++)
 	{
 		for (uint8_t y = 0; y < sizeOfCurrentBoard; y++)
@@ -27,16 +27,16 @@ void ConsoleFunctions::PrintBoard(GoBoard &goBoard)
 		}
 		cout << endl;
 	}
-	ConsoleFunctions::OutputDeadStones(goBoard);
+	Console::OutputDeadStones(goBoard);
 }
 
-void ConsoleFunctions::OutputDeadStones(GoBoard &goBoard)
+const void Console::OutputDeadStones(GameState &goBoard)
 {
-	cout << "Dead white stones : " << goBoard.ReturnDeadStones(stone::white) << endl;
-	cout << "Dead black stones : " << goBoard.ReturnDeadStones(stone::black) << endl;
+	cout << "Dead white stones : " << goBoard.DeadStones(stone::white) << endl;
+	cout << "Dead black stones : " << goBoard.DeadStones(stone::black) << endl;
 }
 
-void ConsoleFunctions::ObtainValidPlayerMove(GoBoard &goBoard)
+void Console::ObtainValidPlayerMove(GameState &goBoard)
 {
 	while (!GetCoordinatesAndPlay(goBoard))
 	{
@@ -44,11 +44,11 @@ void ConsoleFunctions::ObtainValidPlayerMove(GoBoard &goBoard)
 	}
 }
 
-bool ConsoleFunctions::GetCoordinatesAndPlay(GoBoard &goBoard)
+bool Console::GetCoordinatesAndPlay(GameState &goBoard)
 {
-	uint8_t size = goBoard.ReturnGoBoardSize();
-	int16_t x = size;
-	int16_t y = size;
+	uint8_t size = goBoard.GoBoardSize();
+	int8_t x = size;
+	int8_t y = size;
 	while (x >= 0 && x >= size)
 	{
 		x = GetInput("please input an x coordinate : ");
@@ -58,10 +58,10 @@ bool ConsoleFunctions::GetCoordinatesAndPlay(GoBoard &goBoard)
 		y = GetInput("please input an y coordinate : ");
 	}
 
-	return goBoard.PlayStone(x, y, goBoard.ReturnWhosMoveIsNext());
+	return goBoard.PlayStone(x, y, goBoard.WhosMoveIsNext());
 }
 
-uint8_t ConsoleFunctions::GetInput(string message)
+uint8_t Console::GetInput(string message)
 {
 	cout << message << endl;
 	string stringInput;
