@@ -11,7 +11,7 @@ public:
 	board GoBoard();
 	stone WhosMoveIsNext();
 	stone WhosMoveJustWent();
-	uint16_t DeadStones(stone stone);
+	uint16_t PrizonerStones(stone stone);
 	void IncrementDeadStones(stone stone);
 private:
 	uint16_t m_deadWhiteStones;

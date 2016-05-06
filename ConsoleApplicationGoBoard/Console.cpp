@@ -32,8 +32,8 @@ const void Console::PrintBoard(GameState &goBoard)
 
 const void Console::OutputDeadStones(GameState &goBoard)
 {
-	cout << "Dead white stones : " << goBoard.DeadStones(stone::white) << endl;
-	cout << "Dead black stones : " << goBoard.DeadStones(stone::black) << endl;
+   cout << "Dead white stones : " << goBoard.PrizonerStones(stone::white) << endl;
+   cout << "Dead black stones : " << goBoard.PrizonerStones(stone::black) << endl;
 }
 
 void Console::ObtainValidPlayerMove(GameState &goBoard)

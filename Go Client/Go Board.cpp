@@ -61,7 +61,7 @@ stone GameState::WhosMoveJustWent()
    return m_notTurn;
 }
 
-uint16_t GameState::DeadStones(stone stone)
+uint16_t GameState::PrizonerStones(stone stone)
 {
 	switch (stone)
 	{
