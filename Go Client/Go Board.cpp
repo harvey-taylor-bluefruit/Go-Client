@@ -71,6 +71,9 @@ uint16_t GameState::PrizonerStones(stone stone)
 	case stone::black:
       return m_deadBlackStones;
       break;
+   case stone::empty:
+      return 0;
+      break;
 	}
 }
 
