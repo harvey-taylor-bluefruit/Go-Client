@@ -1,13 +1,13 @@
-#include "ConsoleFunctions.h"
+#include "Console.h"
 #include <iostream>
 #include <string>
 
 using namespace ::std;
 
-void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
+const void Console::PrintBoard(GameState &goBoard)
 {
-	board currentBoard = goBoard.ReturnGoBoard();
-	uint8_t sizeOfCurrentBoard = goBoard.ReturnGoBoardSize();
+	board currentBoard = goBoard.GoBoard();
+	uint8_t sizeOfCurrentBoard = goBoard.GoBoardSize();
 	for (uint8_t x = 0; x < sizeOfCurrentBoard; x++)
 	{
 		for (uint8_t y = 0; y < sizeOfCurrentBoard; y++)
@@ -27,9 +27,16 @@ void ConsoleFuntions::PrintBoard(GoBoard &goBoard)
 		}
 		cout << endl;
 	}
+	Console::OutputDeadStones(goBoard);
 }
 
-void ConsoleFuntions::ObtainValidPlayerMove(GoBoard &goBoard)
+const void Console::OutputDeadStones(GameState &goBoard)
+{
+   cout << "Dead white stones : " << goBoard.PrizonerStones(stone::white) << endl;
+   cout << "Dead black stones : " << goBoard.PrizonerStones(stone::black) << endl;
+}
+
+void Console::ObtainValidPlayerMove(GameState &goBoard)
 {
 	while (!GetCoordinatesAndPlay(goBoard))
 	{
@@ -37,11 +44,11 @@ void ConsoleFuntions::ObtainValidPlayerMove(GoBoard &goBoard)
 	}
 }
 
-bool ConsoleFuntions::GetCoordinatesAndPlay(GoBoard &goBoard)
+bool Console::GetCoordinatesAndPlay(GameState &goBoard)
 {
-	uint8_t size = goBoard.ReturnGoBoardSize();
-	int16_t x = size;
-	int16_t y = size;
+	uint8_t size = goBoard.GoBoardSize();
+	int8_t x = size;
+	int8_t y = size;
 	while (x >= 0 && x >= size)
 	{
 		x = GetInput("please input an x coordinate : ");
@@ -51,10 +58,10 @@ bool ConsoleFuntions::GetCoordinatesAndPlay(GoBoard &goBoard)
 		y = GetInput("please input an y coordinate : ");
 	}
 
-	return goBoard.PlayStone(x, y, goBoard.ReturnWhosMoveIsNext());
+	return goBoard.PlayStone(x, y, goBoard.WhosMoveIsNext());
 }
 
-uint8_t ConsoleFuntions::GetInput(string message)
+uint8_t Console::GetInput(string message)
 {
 	cout << message << endl;
 	string stringInput;

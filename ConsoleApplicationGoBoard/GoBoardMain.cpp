@@ -1,17 +1,17 @@
-#include "ConsoleFunctions.h"
+ #include "Console.h"
 #include <iostream>
 
-using namespace ConsoleFuntions;
+using namespace Console;
 
 void main()
 {
-	GoBoard Game(19);
+   GameState Game(19);
 	Rules rules(Game);
 	while (1)
 	{
 		PrintBoard(Game);
 		ObtainValidPlayerMove(Game);
-		rules.DoRules(Game.ReturnWhosMoveIsNext(), Game);
-		rules.DoRules(Game.ReturnWhosMoveJustWent(), Game);
+		rules.DoRules(Game.WhosMoveIsNext(), Game);
+		rules.DoRules(Game.WhosMoveJustWent(), Game);
 	}
 }

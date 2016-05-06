@@ -1,29 +1,29 @@
 #include "Go Rules.h"
 
-Rules::Rules(GoBoard &goBoard):
-	currentBoard(goBoard.ReturnGoBoard())
+Rules::Rules(GameState &goBoard) :
+	currentBoard(goBoard.GoBoard())
 {
 }
 
-void Rules::DoRules(stone StoneChecking, GoBoard &goBoard)
+void Rules::DoRules(stone stoneChecking, GameState &goBoard)
 {
-	currentBoard = goBoard.ReturnGoBoard();
+	currentBoard = goBoard.GoBoard();
 	for (uint8_t x = 0; x < currentBoard.size(); ++x)
 	{
 		for (uint8_t y = 0; y < currentBoard.size(); ++y)
 		{
-			CheckRules(x, y, goBoard, StoneChecking);
+			CheckRules(x, y, goBoard, stoneChecking);
 		}
 	}
 }
 
-void Rules::CheckRules(uint8_t x, uint8_t y, GoBoard &goBoard, stone StoneChecking)
+void Rules::CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone StoneChecking)
 {
-	currentBoard = goBoard.ReturnGoBoard();
+	currentBoard = goBoard.GoBoard();
 	checkedCoordinates = {};
 	currentStone = currentBoard[y][x];
 	liberties = 0;
-	if (currentBoard[y][x] == StoneChecking)
+	if (currentStone == StoneChecking)
 	{
 		if (NumberOflibertiesOfAGroup(x, y) == 0)
 		{
@@ -32,10 +32,11 @@ void Rules::CheckRules(uint8_t x, uint8_t y, GoBoard &goBoard, stone StoneChecki
 	}
 }
 
-void Rules::KillGroup(uint8_t x, uint8_t y, GoBoard &goBoard)
+void Rules::KillGroup(uint8_t x, uint8_t y, GameState &goBoard)
 {
+	goBoard.IncrementDeadStones(currentStone);
 	goBoard.PlayStone(x, y, stone::empty);
-	currentBoard = goBoard.ReturnGoBoard();
+	currentBoard = goBoard.GoBoard();
 	if (x < currentBoard.size() - 1)
 		if (currentBoard[y][x + 1] == currentStone)
 			KillGroup( x + 1, y, goBoard);

@@ -86,6 +86,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DeadStoneCounter_Tests.cpp" />
     <ClCompile Include="GoBoard_Tests.cpp" />
     <ClCompile Include="GoRules_Tests.cpp" />
   </ItemGroup>
