@@ -18,9 +18,9 @@ private:
 		uint8_t y;
 	};
 
-	board previousBoard;
-	board currentBoard;
-	std::vector<coordinate> checkedCoordinates;
-	stone currentStone;
-	uint8_t liberties;
+	board m_previousBoard;
+	board m_currentBoard;
+	std::vector<coordinate> m_checkedCoordinates;
+	stone m_currentStone;
+	uint8_t m_liberties;
 };
