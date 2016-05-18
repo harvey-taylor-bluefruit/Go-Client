@@ -21,18 +21,18 @@
     <ClInclude Include="stdGoBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Go Board.h">
+    <ClInclude Include="Go Rules.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Go Rules.h">
+    <ClInclude Include="GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Go Board.cpp">
+    <ClCompile Include="Go Rules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Go Rules.cpp">
+    <ClCompile Include="GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

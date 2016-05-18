@@ -74,12 +74,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Go Board.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Go Rules.h" />
     <ClInclude Include="stdGoBoard.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Go Board.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Go Rules.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -9,5 +9,5 @@ namespace Console
    const void OutputDeadStones(GameState &goBoard);
    void ObtainValidPlayerMove(GameState &goBoard);
    bool GetCoordinatesAndPlay(GameState &goBoard);
-	uint8_t GetInput(std::string message);
+   uint8_t GetInput(std::string message);
 };

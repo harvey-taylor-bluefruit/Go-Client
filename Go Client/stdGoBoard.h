@@ -5,9 +5,9 @@
 
 enum class stone
 {
-	empty,
-	white,
-	black
+   empty,
+   white,
+   black
 };
 
 typedef std::vector<std::vector<stone>> board;

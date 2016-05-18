@@ -9,12 +9,12 @@ void Rules::DoRules(stone stoneChecking, GameState &goBoard)
 {
    m_currentBoard = goBoard.GoBoard();
    for (uint8_t x = 0; x < m_currentBoard.size(); ++x)
-	{
+   {
       for (uint8_t y = 0; y < m_currentBoard.size(); ++y)
-		{
-			CheckRules(x, y, goBoard, stoneChecking);
-		}
-	}
+      {
+         CheckRules(x, y, goBoard, stoneChecking);
+      }
+   }
 }
 
 void Rules::CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone stoneChecking)
@@ -24,59 +24,59 @@ void Rules::CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone stoneChec
    m_currentStone = m_currentBoard[y][x];
    m_liberties = 0;
    if (m_currentStone == stoneChecking)
-	{
-		if (NumberOflibertiesOfAGroup(x, y) == 0)
-		{
-			KillGroup(x, y, goBoard);
-		}
-	}
+   {
+      if (NumberOflibertiesOfAGroup(x, y) == 0)
+      {
+         KillGroup(x, y, goBoard);
+      }
+   }
 }
 
 void Rules::KillGroup(uint8_t x, uint8_t y, GameState &goBoard)
 {
    goBoard.IncrementDeadStones(m_currentStone);
-	goBoard.PlayStone(x, y, stone::empty);
+   goBoard.PlayStone(x, y, stone::empty);
    m_currentBoard = goBoard.GoBoard();
    if (x < m_currentBoard.size() - 1)
       if (m_currentBoard[y][x + 1] == m_currentStone)
-			KillGroup( x + 1, y, goBoard);
+         KillGroup(x + 1, y, goBoard);
    if (y < m_currentBoard.size() - 1)
       if (m_currentBoard[y + 1][x] == m_currentStone)
-			KillGroup( x, y + 1, goBoard);
-	if (x)
+         KillGroup(x, y + 1, goBoard);
+   if (x)
       if (m_currentBoard[y][x - 1] == m_currentStone)
-			KillGroup( x - 1, y, goBoard);
-	if (y)
+         KillGroup(x - 1, y, goBoard);
+   if (y)
       if (m_currentBoard[y - 1][x] == m_currentStone)
-			KillGroup( x, y - 1,  goBoard);
+         KillGroup(x, y - 1, goBoard);
 }
 
 uint8_t Rules::NumberOflibertiesOfAGroup(uint8_t x, uint8_t y)
 {
-	coordinate currentCoord;
-	currentCoord.x = x;
-	currentCoord.y = y;
+   coordinate currentCoord;
+   currentCoord.x = x;
+   currentCoord.y = y;
 
    for (uint16_t i = 0; i < m_checkedCoordinates.size(); i++)
-	{
+   {
       if (currentCoord.x == m_checkedCoordinates[i].x && currentCoord.y == m_checkedCoordinates[i].y)
          return m_liberties;
-	}
+   }
    m_checkedCoordinates.push_back(currentCoord);
 
-	CheckLibertiesOfAStone(x, y);
+   CheckLibertiesOfAStone(x, y);
    if (x < m_currentBoard.size() - 1)
       if (m_currentBoard[y][x + 1] == m_currentStone)
-			NumberOflibertiesOfAGroup(x + 1, y);
+         NumberOflibertiesOfAGroup(x + 1, y);
    if (y < m_currentBoard.size() - 1)
       if (m_currentBoard[y + 1][x] == m_currentStone)
-			NumberOflibertiesOfAGroup(x, y + 1);
-	if (x)
+         NumberOflibertiesOfAGroup(x, y + 1);
+   if (x)
       if (m_currentBoard[y][x - 1] == m_currentStone)
-			NumberOflibertiesOfAGroup(x - 1, y);
-	if (y)
+         NumberOflibertiesOfAGroup(x - 1, y);
+   if (y)
       if (m_currentBoard[y - 1][x] == m_currentStone)
-			NumberOflibertiesOfAGroup(x, y - 1);
+         NumberOflibertiesOfAGroup(x, y - 1);
    return m_liberties;
 }
 
