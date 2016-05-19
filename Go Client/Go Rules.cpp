@@ -1,25 +1,25 @@
 #include "Go Rules.h"
 
-Rules::Rules(GameState &goBoard) :
-	m_currentBoard(goBoard.GoBoard())
+Rules::Rules(GameState &gameState) :
+m_currentBoard(gameState.GoBoard())
 {
 }
 
-void Rules::DoRules(stone stoneChecking, GameState &goBoard)
+void Rules::DoRules(stone stoneChecking, GameState &gameState)
 {
-   m_currentBoard = goBoard.GoBoard();
+   m_currentBoard = gameState.GoBoard();
    for (uint8_t x = 0; x < m_currentBoard.size(); ++x)
    {
       for (uint8_t y = 0; y < m_currentBoard.size(); ++y)
       {
-         CheckRules(x, y, goBoard, stoneChecking);
+         CheckRules(x, y, gameState, stoneChecking);
       }
    }
 }
 
-void Rules::CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone stoneChecking)
+void Rules::CheckRules(uint8_t x, uint8_t y, GameState &gameState, stone stoneChecking)
 {
-   m_currentBoard = goBoard.GoBoard();
+   m_currentBoard = gameState.GoBoard();
    m_checkedCoordinates = {};
    m_currentStone = m_currentBoard[y][x];
    m_liberties = 0;
@@ -27,28 +27,28 @@ void Rules::CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone stoneChec
    {
       if (NumberOflibertiesOfAGroup(x, y) == 0)
       {
-         KillGroup(x, y, goBoard);
+         KillGroup(x, y, gameState);
       }
    }
 }
 
-void Rules::KillGroup(uint8_t x, uint8_t y, GameState &goBoard)
+void Rules::KillGroup(uint8_t x, uint8_t y, GameState &gameState)
 {
-   goBoard.IncrementDeadStones(m_currentStone);
-   goBoard.PlayStone(x, y, stone::empty);
-   m_currentBoard = goBoard.GoBoard();
+   gameState.IncrementDeadStones(m_currentStone);
+   gameState.PlayStone(x, y, stone::empty);
+   m_currentBoard = gameState.GoBoard();
    if (x < m_currentBoard.size() - 1)
       if (m_currentBoard[y][x + 1] == m_currentStone)
-         KillGroup(x + 1, y, goBoard);
+         KillGroup(x + 1, y, gameState);
    if (y < m_currentBoard.size() - 1)
       if (m_currentBoard[y + 1][x] == m_currentStone)
-         KillGroup(x, y + 1, goBoard);
+         KillGroup(x, y + 1, gameState);
    if (x)
       if (m_currentBoard[y][x - 1] == m_currentStone)
-         KillGroup(x - 1, y, goBoard);
+         KillGroup(x - 1, y, gameState);
    if (y)
       if (m_currentBoard[y - 1][x] == m_currentStone)
-         KillGroup(x, y - 1, goBoard);
+         KillGroup(x, y - 1, gameState);
 }
 
 uint8_t Rules::NumberOflibertiesOfAGroup(uint8_t x, uint8_t y)

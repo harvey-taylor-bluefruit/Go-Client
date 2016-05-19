@@ -37,6 +37,7 @@ bool GameState::PlayStone(uint8_t X, uint8_t Y, stone stoneColour)
 {
    if (m_goBoard[Y][X] != stone::empty && stoneColour != stone::empty)
       return false;
+
    m_goBoard[Y][X] = stoneColour;
    if (stoneColour == stone::white)
    {
@@ -77,9 +78,9 @@ uint16_t GameState::PrizonerStones(stone stone)
    }
 }
 
-void GameState::IncrementDeadStones(stone stone)
+void GameState::IncrementDeadStones(stone stoneColour)
 {
-   switch (stone)
+   switch (stoneColour)
    {
    case stone::white:
       m_deadWhiteStones++;

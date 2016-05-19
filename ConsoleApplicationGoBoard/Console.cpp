@@ -4,10 +4,10 @@
 
 using namespace ::std;
 
-const void Console::PrintBoard(GameState &goBoard)
+const void Console::PrintBoard(GameState &GameState)
 {
-   board currentBoard = goBoard.GoBoard();
-   uint8_t sizeOfCurrentBoard = goBoard.GoBoardSize();
+   board currentBoard = GameState.GoBoard();
+   uint8_t sizeOfCurrentBoard = GameState.GoBoardSize();
    for (uint8_t x = 0; x < sizeOfCurrentBoard; x++)
    {
       for (uint8_t y = 0; y < sizeOfCurrentBoard; y++)
@@ -27,26 +27,26 @@ const void Console::PrintBoard(GameState &goBoard)
       }
       cout << endl;
    }
-   Console::OutputDeadStones(goBoard);
+   Console::OutputDeadStones(GameState);
 }
 
-const void Console::OutputDeadStones(GameState &goBoard)
+const void Console::OutputDeadStones(GameState &GameState)
 {
-   cout << "Dead white stones : " << goBoard.PrizonerStones(stone::white) << endl;
-   cout << "Dead black stones : " << goBoard.PrizonerStones(stone::black) << endl;
+   cout << "Dead white stones : " << GameState.PrizonerStones(stone::white) << endl;
+   cout << "Dead black stones : " << GameState.PrizonerStones(stone::black) << endl;
 }
 
-void Console::ObtainValidPlayerMove(GameState &goBoard)
+void Console::ObtainValidPlayerMove(GameState &GameState)
 {
-   while (!GetCoordinatesAndPlay(goBoard))
+   while (!GetCoordinatesAndPlay(GameState))
    {
       std::cout << "you cant go there!" << std::endl;
    }
 }
 
-bool Console::GetCoordinatesAndPlay(GameState &goBoard)
+bool Console::GetCoordinatesAndPlay(GameState &GameState)
 {
-   uint8_t size = goBoard.GoBoardSize();
+   uint8_t size = GameState.GoBoardSize();
    int8_t x = size;
    int8_t y = size;
    while (x >= 0 && x >= size)
@@ -55,13 +55,13 @@ bool Console::GetCoordinatesAndPlay(GameState &goBoard)
    }
    while (y >= 0 && y >= size)
    {
-      y = GetInput("please input an y coordinate : ");
+      y = GetInput("please input a y coordinate : ");
    }
 
-   return goBoard.PlayStone(x, y, goBoard.WhosMoveIsNext());
+   return GameState.PlayStone(x, y, GameState.WhosMoveIsNext());
 }
 
-uint8_t Console::GetInput(string message)
+uint8_t Console::GetInput(const string &message)
 {
    cout << message << endl;
    string stringInput;
