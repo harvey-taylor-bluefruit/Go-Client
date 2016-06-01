@@ -5,7 +5,7 @@ using namespace std;
 GameState::GameState(uint8_t goBoardSize) :
 m_goBoardSize(goBoardSize), m_goBoard(CreateGoBoard()),
 m_turn(stone::black), m_notTurn(stone::white),
-m_deadBlackStones(0), m_deadWhiteStones(0)
+m_prizonerBlackStones(0), m_prizonerWhiteStones(0)
 {
 }
 
@@ -67,15 +67,11 @@ uint16_t GameState::PrizonerStones(stone stone)
    switch (stone)
    {
    case stone::white:
-      return m_deadWhiteStones;
-      break;
+      return m_prizonerWhiteStones;
    case stone::black:
-      return m_deadBlackStones;
-      break;
-   case stone::empty:
-      return 0;
-      break;
+      return m_prizonerBlackStones;
    }
+   return 0;
 }
 
 void GameState::IncrementDeadStones(stone stoneColour)
@@ -83,10 +79,10 @@ void GameState::IncrementDeadStones(stone stoneColour)
    switch (stoneColour)
    {
    case stone::white:
-      m_deadWhiteStones++;
+      m_prizonerWhiteStones++;
       break;
    case stone::black:
-      m_deadBlackStones++;
+      m_prizonerBlackStones++;
       break;
    }
 }

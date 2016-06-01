@@ -14,8 +14,8 @@ public:
    uint16_t PrizonerStones(stone stone);
    void IncrementDeadStones(stone stone);
 private:
-   uint16_t m_deadWhiteStones;
-   uint16_t m_deadBlackStones;
+   uint16_t m_prizonerWhiteStones;
+   uint16_t m_prizonerBlackStones;
    board CreateGoBoard();
    const uint8_t m_goBoardSize;
    board m_goBoard;
