@@ -1,11 +1,11 @@
-#include "Go Board.h"
+#include "GameState.h"
 
 using namespace std;
 
 GameState::GameState(uint8_t goBoardSize) :
 m_goBoardSize(goBoardSize), m_goBoard(CreateGoBoard()),
 m_turn(stone::black), m_notTurn(stone::white),
-m_deadBlackStones(0), m_deadWhiteStones(0)
+m_prizonerBlackStones(0), m_prizonerWhiteStones(0)
 {
 }
 
@@ -16,16 +16,16 @@ uint8_t GameState::GoBoardSize()
 
 board GameState::CreateGoBoard()
 {
-	board tempGoBoardBoard;
+   board tempGoBoardBoard;
    for (uint8_t x = 0; x < m_goBoardSize; x++)
-	{
-		tempGoBoardBoard.push_back(vector<stone> {});
+   {
+      tempGoBoardBoard.push_back(vector<stone> {});
       for (uint8_t y = 0; y < m_goBoardSize; y++)
-		{
-			tempGoBoardBoard[x].push_back(stone::empty);
-		}
-	}
-	return tempGoBoardBoard;
+      {
+         tempGoBoardBoard[x].push_back(stone::empty);
+      }
+   }
+   return tempGoBoardBoard;
 }
 
 board GameState::GoBoard()
@@ -36,19 +36,20 @@ board GameState::GoBoard()
 bool GameState::PlayStone(uint8_t X, uint8_t Y, stone stoneColour)
 {
    if (m_goBoard[Y][X] != stone::empty && stoneColour != stone::empty)
-		return false;
+      return false;
+
    m_goBoard[Y][X] = stoneColour;
-	if (stoneColour == stone::white)
-	{
+   if (stoneColour == stone::white)
+   {
       m_turn = stone::black;
       m_notTurn = stone::white;
-	}
-	if (stoneColour == stone::black)
-	{
+   }
+   if (stoneColour == stone::black)
+   {
       m_turn = stone::white;
       m_notTurn = stone::black;
-	}
-	return true;
+   }
+   return true;
 }
 
 stone GameState::WhosMoveIsNext()
@@ -63,29 +64,25 @@ stone GameState::WhosMoveJustWent()
 
 uint16_t GameState::PrizonerStones(stone stone)
 {
-	switch (stone)
-	{
-	case stone::white:
-      return m_deadWhiteStones;
-      break;
-	case stone::black:
-      return m_deadBlackStones;
-      break;
-   case stone::empty:
-      return 0;
-      break;
-	}
+   switch (stone)
+   {
+   case stone::white:
+      return m_prizonerWhiteStones;
+   case stone::black:
+      return m_prizonerBlackStones;
+   }
+   return 0;
 }
 
-void GameState::IncrementDeadStones(stone stone)
+void GameState::IncrementDeadStones(stone stoneColour)
 {
-	switch (stone)
-	{
-	case stone::white:
-      m_deadWhiteStones++;
+   switch (stoneColour)
+   {
+   case stone::white:
+      m_prizonerWhiteStones++;
       break;
-	case stone::black:
-      m_deadBlackStones++;
+   case stone::black:
+      m_prizonerBlackStones++;
       break;
-	}
+   }
 }

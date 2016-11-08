@@ -1,93 +1,93 @@
 #include "Go Rules.h"
 
-Rules::Rules(GameState &goBoard) :
-	currentBoard(goBoard.GoBoard())
+Rules::Rules(GameState &gameState) :
+m_currentBoard(gameState.GoBoard())
 {
 }
 
-void Rules::DoRules(stone stoneChecking, GameState &goBoard)
+void Rules::DoRules(stone stoneChecking, GameState &gameState)
 {
-	currentBoard = goBoard.GoBoard();
-	for (uint8_t x = 0; x < currentBoard.size(); ++x)
-	{
-		for (uint8_t y = 0; y < currentBoard.size(); ++y)
-		{
-			CheckRules(x, y, goBoard, stoneChecking);
-		}
-	}
+   m_currentBoard = gameState.GoBoard();
+   for (uint8_t x = 0; x < m_currentBoard.size(); ++x)
+   {
+      for (uint8_t y = 0; y < m_currentBoard.size(); ++y)
+      {
+         CheckRules(x, y, gameState, stoneChecking);
+      }
+   }
 }
 
-void Rules::CheckRules(uint8_t x, uint8_t y, GameState &goBoard, stone StoneChecking)
+void Rules::CheckRules(uint8_t x, uint8_t y, GameState &gameState, stone stoneChecking)
 {
-	currentBoard = goBoard.GoBoard();
-	checkedCoordinates = {};
-	currentStone = currentBoard[y][x];
-	liberties = 0;
-	if (currentStone == StoneChecking)
-	{
-		if (NumberOflibertiesOfAGroup(x, y) == 0)
-		{
-			KillGroup(x, y, goBoard);
-		}
-	}
+   m_currentBoard = gameState.GoBoard();
+   m_checkedCoordinates = {};
+   m_currentStone = m_currentBoard[y][x];
+   m_liberties = 0;
+   if (m_currentStone == stoneChecking)
+   {
+      if (NumberOflibertiesOfAGroup(x, y) == 0)
+      {
+         KillGroup(x, y, gameState);
+      }
+   }
 }
 
-void Rules::KillGroup(uint8_t x, uint8_t y, GameState &goBoard)
+void Rules::KillGroup(uint8_t x, uint8_t y, GameState &gameState)
 {
-	goBoard.IncrementDeadStones(currentStone);
-	goBoard.PlayStone(x, y, stone::empty);
-	currentBoard = goBoard.GoBoard();
-	if (x < currentBoard.size() - 1)
-		if (currentBoard[y][x + 1] == currentStone)
-			KillGroup( x + 1, y, goBoard);
-	if (y < currentBoard.size() - 1)
-		if (currentBoard[y + 1][x] == currentStone)
-			KillGroup( x, y + 1, goBoard);
-	if (x)
-		if (currentBoard[y][x - 1] == currentStone)
-			KillGroup( x - 1, y, goBoard);
-	if (y)
-		if (currentBoard[y - 1][x] == currentStone)
-			KillGroup( x, y - 1,  goBoard);
+   gameState.IncrementDeadStones(m_currentStone);
+   gameState.PlayStone(x, y, stone::empty);
+   m_currentBoard = gameState.GoBoard();
+   if (x < m_currentBoard.size() - 1)
+      if (m_currentBoard[y][x + 1] == m_currentStone)
+         KillGroup(x + 1, y, gameState);
+   if (y < m_currentBoard.size() - 1)
+      if (m_currentBoard[y + 1][x] == m_currentStone)
+         KillGroup(x, y + 1, gameState);
+   if (x)
+      if (m_currentBoard[y][x - 1] == m_currentStone)
+         KillGroup(x - 1, y, gameState);
+   if (y)
+      if (m_currentBoard[y - 1][x] == m_currentStone)
+         KillGroup(x, y - 1, gameState);
 }
 
 uint8_t Rules::NumberOflibertiesOfAGroup(uint8_t x, uint8_t y)
 {
-	coordinate currentCoord;
-	currentCoord.x = x;
-	currentCoord.y = y;
+   coordinate currentCoord;
+   currentCoord.x = x;
+   currentCoord.y = y;
 
-	for (uint16_t i = 0; i < checkedCoordinates.size(); i++)
-	{
-		if (currentCoord.x == checkedCoordinates[i].x && currentCoord.y == checkedCoordinates[i].y)
-		return liberties;
-	}
-	checkedCoordinates.push_back(currentCoord);
+   for (uint16_t i = 0; i < m_checkedCoordinates.size(); i++)
+   {
+      if (currentCoord.x == m_checkedCoordinates[i].x && currentCoord.y == m_checkedCoordinates[i].y)
+         return m_liberties;
+   }
+   m_checkedCoordinates.push_back(currentCoord);
 
-	CheckLibertiesOfAStone(x, y);
-	if (x < currentBoard.size() - 1)
-		if (currentBoard[y][x + 1] == currentStone)
-			NumberOflibertiesOfAGroup(x + 1, y);
-	if (y < currentBoard.size() - 1)
-		if (currentBoard[y + 1][x] == currentStone)
-			NumberOflibertiesOfAGroup(x, y + 1);
-	if (x)
-		if (currentBoard[y][x - 1] == currentStone)
-			NumberOflibertiesOfAGroup(x - 1, y);
-	if (y)
-		if (currentBoard[y - 1][x] == currentStone)
-			NumberOflibertiesOfAGroup(x, y - 1);
-	return liberties;
+   CheckLibertiesOfAStone(x, y);
+   if (x < m_currentBoard.size() - 1)
+      if (m_currentBoard[y][x + 1] == m_currentStone)
+         NumberOflibertiesOfAGroup(x + 1, y);
+   if (y < m_currentBoard.size() - 1)
+      if (m_currentBoard[y + 1][x] == m_currentStone)
+         NumberOflibertiesOfAGroup(x, y + 1);
+   if (x)
+      if (m_currentBoard[y][x - 1] == m_currentStone)
+         NumberOflibertiesOfAGroup(x - 1, y);
+   if (y)
+      if (m_currentBoard[y - 1][x] == m_currentStone)
+         NumberOflibertiesOfAGroup(x, y - 1);
+   return m_liberties;
 }
 
 void Rules::CheckLibertiesOfAStone(uint8_t x, uint8_t y)
 {
-	if (x < currentBoard.size()-1 && (currentBoard[y][x + 1] == stone::empty))
-		++liberties;
-	if (y < currentBoard.size()-1 && (currentBoard[y + 1][x] == stone::empty))
-		++liberties;
-	if (x && (currentBoard[y][x - 1] == stone::empty))
-		++liberties;
-	if (y && (currentBoard[y - 1][x] == stone::empty))
-		++liberties;
+   if (x < m_currentBoard.size() - 1 && (m_currentBoard[y][x + 1] == stone::empty))
+      ++m_liberties;
+   if (y < m_currentBoard.size() - 1 && (m_currentBoard[y + 1][x] == stone::empty))
+      ++m_liberties;
+   if (x && (m_currentBoard[y][x - 1] == stone::empty))
+      ++m_liberties;
+   if (y && (m_currentBoard[y - 1][x] == stone::empty))
+      ++m_liberties;
 }
